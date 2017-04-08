@@ -1,0 +1,181 @@
+﻿<UserControl x:Class="EasyTrainTickets.Desktop.Views.SearchView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EasyTrainTickets.Desktop.Views"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <UserControl.Resources>
+        <DataTemplate x:Key="ItemTemplate">
+            <Grid Margin="0,2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Z: "/>
+                    <TextBlock Text="{Binding StartStation}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="1">
+                    <TextBlock Text="Do: "/>
+                    <TextBlock Text="{Binding EndStation}"/>
+                </StackPanel>
+                <TextBlock Text="{Binding StartTime, StringFormat='{}{0:d.MM.yyyy}'}" Grid.Column="1"/>
+                <TextBlock Text="{Binding JourneyEnd, StringFormat='{}{0:d.MM.yyyy}'}" Grid.Row="1" Grid.Column="1"/>              
+                <StackPanel Orientation="Horizontal" Grid.Column="2">
+                    <TextBlock Text="Odjazd: "/>
+                    <TextBlock Text="{Binding StartTime, StringFormat='HH:mm'}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2">
+                    <TextBlock Text="Przyjazd: "/>
+                    <TextBlock Text="{Binding EndTime, StringFormat='HH:mm'}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Column="3">
+                    <TextBlock Text="Czas podróży: "/>
+                    <TextBlock Text="{Binding JourneyTime, StringFormat='hh\\:mm'}"/>
+                    <TextBlock Text=" h"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="3">
+                    <TextBlock Text="Cena: "/>
+                    <TextBlock Text="{Binding Price}"/>
+                    <TextBlock Text=" zł"/>
+                </StackPanel>
+                <TextBlock Text="Ilość przesiadek: " Grid.Column="4"/>
+                <TextBlock Text="{Binding Change}" Grid.Column="4" Grid.Row="1"/>
+                <ItemsControl ItemsSource="{Binding SourcePictures}" Grid.Column="5" Grid.RowSpan="2">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Image Margin="3" Source="{Binding }"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="SelectedTemplate">
+            <Grid Margin="0,2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Z: "/>
+                    <TextBlock Text="{Binding StartStation}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="1">
+                    <TextBlock Text="Do: "/>
+                    <TextBlock Text="{Binding EndStation}"/>
+                </StackPanel>
+                <TextBlock Text="{Binding StartTime, StringFormat='{}{0:d.MM.yyyy}'}" Grid.Column="1"/>
+                <TextBlock Text="{Binding JourneyEnd, StringFormat='{}{0:d.MM.yyyy}'}" Grid.Row="1" Grid.Column="1"/>
+                <StackPanel Orientation="Horizontal" Grid.Column="2">
+                    <TextBlock Text="Odjazd: "/>
+                    <TextBlock Text="{Binding StartTime, StringFormat='HH:mm'}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2">
+                    <TextBlock Text="Przyjazd: "/>
+                    <TextBlock Text="{Binding EndTime, StringFormat='HH:mm'}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Column="3">
+                    <TextBlock Text="Czas podróży: "/>
+                    <TextBlock Text="{Binding JourneyTime, StringFormat='hh\\:mm'}"/>
+                    <TextBlock Text=" h"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="3">
+                    <TextBlock Text="Cena: "/>
+                    <TextBlock Text="{Binding Price}"/>
+                    <TextBlock Text=" zł"/>
+                </StackPanel>
+                <TextBlock Text="Ilość przesiadek: " Grid.Column="4"/>
+                <TextBlock Text="{Binding Change}" Grid.Column="4" Grid.Row="1"/>
+                <TextBlock Grid.Row="2" Grid.ColumnSpan="6" Text="{Binding Way}" FontFamily="Courier New" />
+                <ItemsControl ItemsSource="{Binding SourcePictures}" Grid.Column="5" Grid.RowSpan="2">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Image Margin="3" Source="{Binding }"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+        </DataTemplate>
+
+        <Style x:Key="Score" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="ContentTemplate" Value="{StaticResource ItemTemplate}" />
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="ContentTemplate" Value="{StaticResource SelectedTemplate}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Wyszukiwarka Połączeń" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="2" FontSize="32"/>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="Skąd: " />
+            <ComboBox ItemsSource="{Binding FromStation }" SelectedItem="{Binding SelectedFromStation}" Width="100"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="Dokąd: " />
+            <ComboBox ItemsSource="{Binding EndStation }" SelectedItem="{Binding SelectedEndStation}" Width="100"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" Margin="10,10,10,10">
+            <TextBlock Text="Data kursowania:  " VerticalAlignment="Top"/>
+            <xctk:DateTimePicker x:Name="StartDate" Grid.Row="2" VerticalAlignment="Top" Width="150" Value="{Binding StartDate}" MinWidth="200" Minimum="{Binding MinDate}"/>
+        </StackPanel>
+        <Button Name="BuyTicket" Grid.Row="2" Grid.Column="1" Width="100" Height="30" Margin="100,0,0,0" Content="Kup bilet"/>
+
+        <ListBox Name="list" Grid.Row="3" Grid.ColumnSpan="2"
+                 AlternationCount="2" ItemsSource="{Binding Paths}" SelectedItem="{Binding SelectedPath}"
+           ItemContainerStyle="{StaticResource Score}">
+        </ListBox>
+
+        <Button Name="Search" Content="Szukaj połączenie" Grid.Row="4" Grid.ColumnSpan="2"/>
+
+    </Grid>
+</UserControl>
